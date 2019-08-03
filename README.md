@@ -35,3 +35,11 @@
  - [x] Dingo API
  - [x] Laravel Passport
  - [ ] Repository Based Design
+
+### References:
+- [Laravel](https://laravel.com/)
+- [Dingo-API](https://github.com/dingo/api)
+- [Passport](https://laravel.com/docs/5.8/passport)
+- [Vue](https://vuejs.org/)
+- [Vuex](https://vuex.vuejs.org/)
+- [VueRouter](https://router.vuejs.org/)
