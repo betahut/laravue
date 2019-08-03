@@ -1,4 +1,8 @@
 # Laravel Vue Starter
+### Prerequesties
+- PHP v7.3
+- NodeJS
+
 ### Installation Setup Steps
 - run ```composer install```
 - run ```npm install```
