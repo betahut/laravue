@@ -2,8 +2,9 @@
  - [x] Laravel
  - [x] Vue
  - [x] Vuex
- - [x] Dingo API
- - [x] Laravel Passport
  - [x] Vue Authentication
  - [x] Module Based Vuex
+ - [x] Vue Router
+ - [x] Dingo API
+ - [x] Laravel Passport
  - [ ] Repository Based Design
