@@ -10,7 +10,6 @@ const router = new VueRouter({ routes });
 router.beforeEach((to, from, next) => {
     let _auth = JSON.parse(localStorage.getItem("auth")) || store.getters.auth;
     let isLoggedIn = _auth && _auth.isLoggedIn;
-    loggy(isLoggedIn, 2);
     if(to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn)
         next({ name: 'signin' });
     else if(to.matched.some(record => !record.meta.requiresAuth) && isLoggedIn)
