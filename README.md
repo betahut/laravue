@@ -29,6 +29,7 @@
 - goto ```http://127.0.0.1:8000``` login into the application using the following
     ```user: admin@explorer.dev, password: secret```
 
+### Screenshots
 ![Explorer](https://raw.githubusercontent.com/moaj257/Laravel-Vue-Starter/master/snap.png)
 
 ### To Dos
