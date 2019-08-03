@@ -1,4 +1,31 @@
 # Laravel Vue Starter
+### Installation Setup Steps
+- run ```composer install```
+- run ```npm install```
+- run ```cp .env.example .env```
+- configure the database in .env
+- run ```php artisan key:generate```
+- add the following in the .env file
+    ```API_STANDARDS_TREE=vnd
+    API_SUBTYPE=exporer
+    API_PREFIX=api
+    API_VERSION=v1
+    API_NAME="Explorer"
+    API_CONDITIONAL_REQUEST=false
+    API_STRICT=true
+    API_DEFAULT_FORMAT=json
+    API_DEBUG=true
+- run ```php artisan migrate```
+- run ```php artisan passport:install```
+- copy the 2nd client secret & change it in /resources/js/_store/_modules/_auth/actions.js
+- now add a new user in the database
+    ```INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'Admin', 'admin@explorer.dev', NULL, '$2y$10$1pCwgY4Io7EqyccVaNUaKucqote2ppsHSqMc28QdhSny3kc2hsGxO', NULL, NULL, NULL);```
+- run ```php artisan serve```
+- run ```run npm run watch```
+- goto ```http://127.0.0.1:8000``` login into the application using the following
+    ```user: admin@explorer.dev, password: secret```
+
+### To Dos
  - [x] Laravel
  - [x] Vue
  - [x] Vuex
