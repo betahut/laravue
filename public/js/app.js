@@ -19642,11 +19642,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../_constants */ "./resources/js/_constants/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -19662,7 +19664,6 @@ function () {
         switch (_context.prev = _context.next) {
           case 0:
             commit = _ref.commit, state = _ref.state;
-            console.log(state, "___state");
             commit('login', {
               isLoading: true,
               isLoggedIn: false
@@ -19670,19 +19671,19 @@ function () {
             authentication = JSON.parse(localStorage.getItem("auth"));
 
             if (!authentication) {
-              _context.next = 8;
+              _context.next = 7;
               break;
             }
 
             commit('login', authentication);
-            _context.next = 10;
+            _context.next = 9;
             break;
 
-          case 8:
-            _context.next = 10;
+          case 7:
+            _context.next = 9;
             return _api__WEBPACK_IMPORTED_MODULE_1__["_api"].post('/oauth/token', {
-              client_id: 2,
-              client_secret: 'edDEqXpxea5gpuNLRVsjbY24nce1TfnUFqL7GRD0',
+              client_id: _constants__WEBPACK_IMPORTED_MODULE_2__["_clientId"],
+              client_secret: _constants__WEBPACK_IMPORTED_MODULE_2__["_clientSecret"],
               scope: '*',
               username: "".concat(_auth.email),
               password: "".concat(_auth.password),
@@ -19707,7 +19708,7 @@ function () {
               });
             });
 
-          case 10:
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -19783,7 +19784,6 @@ var state = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var login = function login(state, _auth) {
-  console.log(_auth);
   state.auth = _auth;
 };
 
@@ -20062,21 +20062,15 @@ router.beforeEach(function (to, from, next) {
   var _auth = JSON.parse(localStorage.getItem("auth")) || _store__WEBPACK_IMPORTED_MODULE_4__["default"].getters.auth;
 
   var isLoggedIn = _auth && _auth.isLoggedIn;
-  Object(_functions__WEBPACK_IMPORTED_MODULE_3__["loggy"])(isLoggedIn, 2);
-
   if (to.matched.some(function (record) {
     return record.meta.requiresAuth;
-  })) {
-    if (!isLoggedIn) next({
-      name: 'signin'
-    });else next();
-  } else if (to.matched.some(function (record) {
-    return !record.meta.requiresAuth;
-  })) {
-    if (isLoggedIn) next({
-      name: 'home'
-    });else next();
-  } else next();
+  }) && !isLoggedIn) next({
+    name: 'signin'
+  });else if (to.matched.some(function (record) {
+    return record.meta.isAuthPage;
+  }) && isLoggedIn) next({
+    name: 'home'
+  });else next();
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.productionTip = false;
 
@@ -20115,7 +20109,7 @@ var routes = [{
 }, {
   path: '/auth/signin',
   meta: {
-    requiresAuth: false
+    isAuthPage: true
   },
   name: 'signin',
   component: _views_auth_Signin__WEBPACK_IMPORTED_MODULE_1__["default"]

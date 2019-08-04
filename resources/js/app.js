@@ -12,7 +12,7 @@ router.beforeEach((to, from, next) => {
     let isLoggedIn = _auth && _auth.isLoggedIn;
     if(to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn)
         next({ name: 'signin' });
-    else if(to.matched.some(record => !record.meta.requiresAuth) && isLoggedIn)
+    else if(to.matched.some(record => record.meta.isAuthPage) && isLoggedIn)
         next({ name: 'home' });
     else
         next();

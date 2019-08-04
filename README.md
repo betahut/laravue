@@ -21,7 +21,7 @@
     API_DEBUG=true
 - run ```php artisan migrate```
 - run ```php artisan passport:install```
-- copy the 2nd client secret & change it in /resources/js/_store/_modules/_auth/actions.js
+- copy the 2nd client secret & change it in /resources/js/_constants/global.constants.js
 - now add a new user in the database
     ```INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (NULL, 'Admin', 'admin@explorer.dev', NULL, '$2y$10$1pCwgY4Io7EqyccVaNUaKucqote2ppsHSqMc28QdhSny3kc2hsGxO', NULL, NULL, NULL);```
 - run ```php artisan serve```
