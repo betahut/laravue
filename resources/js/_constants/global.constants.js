@@ -1,5 +1,6 @@
 export const _siteName = 'Explorer';
 export const _siteUrl = 'https://dicus.herokuapp.com/';
+export const _apiUrl = `${_siteUrl}api/v1/`;
 export const _clientIdPersonal = 1;
 export const _clientSecretPersonal = 'OP4PgYDpzhr4PPxRpI5779eKKRL8AAlbdU1gdTJc';
 export const _clientId = 2;

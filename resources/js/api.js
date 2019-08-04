@@ -1,9 +1,9 @@
 import axios from "axios";
 // import store from "./store";
-import { _siteUrl } from "./_constants";
+import { _apiUrl } from "./_constants";
 
 export const _api = axios.create({
-    baseURL: `${_siteUrl}`,
+    baseURL: `${_apiUrl}`,
     timeout: 30000,
     headers: { 'Accept': 'application/vnd.Laravel.v1+json', 'Content-Type': 'application/json' }
 });
