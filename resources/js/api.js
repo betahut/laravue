@@ -5,7 +5,7 @@ import { _apiUrl } from "./_constants";
 export const _api = axios.create({
     baseURL: `${_apiUrl}`,
     timeout: 30000,
-    headers: { 'Accept': 'application/vnd.Laravel.v1+json', 'Content-Type': 'application/json' }
+    headers: { 'Accept': 'application/vnd.explorer.v1+json', 'Content-Type': 'application/json' }
 });
 
 _api.interceptors.request.use(
