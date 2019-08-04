@@ -65,6 +65,6 @@
             "php artisan optimize",
             "chmod -R 775 public/",
             "chmod -R 775 storage/"
-        ],
+        ]
     }
 }
