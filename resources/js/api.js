@@ -1,8 +1,8 @@
 import axios from "axios";
-// import store from "./store";
 import { _apiUrl } from "./_constants";
+import { mapGetters } from "vue";
 
-export const _api = axios.create({
+const _api = axios.create({
     baseURL: `${_apiUrl}`,
     timeout: 30000,
     headers: { 'Accept': 'application/vnd.explorer.v1+json', 'Content-Type': 'application/json' }
@@ -11,15 +11,16 @@ export const _api = axios.create({
 _api.interceptors.request.use(
     function (config) {
         const { url } = config;
-        if(url.indexOf('/api/') !== -1){
+        if(url.indexOf('/api/') !== -1 && url.indexOf('/oauth/') === -1){
+            console.log(mapGetters(['auth']), "__ATUT");
             const token = '';
-            if (token != null) {
+            if (token != null)
                 config.headers.Authorization = `Bearer ${token}`;
-            }
         }
         return config;
     }
-    // , function (err) {
-    //     return Promise.reject(err);
-    // }
 );
+
+export {
+    _api
+}

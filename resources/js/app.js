@@ -8,7 +8,9 @@ import store from './store';
 const router = new VueRouter({ routes });
 
 router.beforeEach((to, from, next) => {
-    let _auth = JSON.parse(localStorage.getItem("auth")) || store.getters.auth;
+    let _authLocal = JSON.parse(localStorage.getItem("auth"));
+    _authLocal && store.dispatch('login', _authLocal);
+    let _auth = _authLocal || store.getters.auth;
     let isLoggedIn = _auth && _auth.isLoggedIn;
     if(to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn)
         next({ name: 'signin' });

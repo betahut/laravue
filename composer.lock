@@ -4,8 +4,59 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb7e194e1a9f008cf438a1133cdd38b1",
+    "content-hash": "cf5f1122efc4532f6bd99403cf31f94a",
     "packages": [
+        {
+            "name": "altayalp/ftp-client",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/altayalp/php-ftp-client.git",
+                "reference": "7b85c3bd25d6d29dbb245abb1f9f367e47e7e07e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/altayalp/php-ftp-client/zipball/7b85c3bd25d6d29dbb245abb1f9f367e47e7e07e",
+                "reference": "7b85c3bd25d6d29dbb245abb1f9f367e47e7e07e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ftp": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "altayalp\\FtpClient\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "İzzet Ögetürk",
+                    "email": "altayalp@gmail.com",
+                    "homepage": "http://altayalp.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "FTP and SFTP client for Php",
+            "homepage": "https://github.com/altayalp/php-ftpclient",
+            "keywords": [
+                "ftp",
+                "ftp client",
+                "php ftp",
+                "sftp",
+                "ssh",
+                "ssh ftp"
+            ],
+            "time": "2016-08-04T23:23:48+00:00"
+        },
         {
             "name": "defuse/php-encryption",
             "version": "v2.2.1",

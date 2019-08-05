@@ -1,4 +1,4 @@
-import Home from './_views/Home';
+import Home from './_views/_dashboard/Dashboard';
 import Signin from './_views/_auth/Signin';
 
 export const routes = [
