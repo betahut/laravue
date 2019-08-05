@@ -1,13 +1,13 @@
 import _api from "../../../api";
-import { _clientSecret, _clientId } from "../../../_constants";
 
 const ftpList = async ({ commit, state }, _auth) => {
-    commit('login', { isLoading: true, isLoggedIn: false });
+    commit('ftpList', { listLoading: true });
     await _api.get('/ftp/list').then((res) => {
-        console.log(res);
+        const { data } = res;
+        const { list } = data;
+        commit('ftpList', { listLoading: false, list: list, staus: res.status, error: '' });
     }).catch((err) => {
-        console.log(err && err.response);
-        // err && err.response && commit('login', { isLoading: false, isLoggedIn: false, staus: err.response.status, error: err.response.data, data: '' });
+        err && err.response && commit('ftpList', { listLoading: false, staus: err.response.status, error: err.response.data, list: '' });
     });
 }
 

@@ -1,5 +1,5 @@
-const ftpList = state => state.ftpList;
+const list = state => state.list;
 
 export default {
-    ftpList,
+    list,
 };

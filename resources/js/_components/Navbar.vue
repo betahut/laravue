@@ -14,13 +14,13 @@
             </div>
         </div>
         <div class="w-1/6 flex justify-end flex-shrink-0">
-            <router-link class="flex" to="/auth/signin" v-if="auth && auth.isLoggedIn !== true">
+            <router-link class="flex" to="/auth/signin" v-if="auth && auth.isLoggedIn !== true || !auth">
                 <img :src="login" alt="Login" class="h-8 w-8 ml-2">
                 <span class="inline-block text-sm px-4 py-2 leading-none rounded text-gray hidden md:block lg:block">Sign In</span>
             </router-link>
             <router-link class="flex" to="/auth/signin" v-if="auth && auth.isLoggedIn === true">
                 <img :src="login" alt="Login" class="h-8 w-8 ml-2">
-                <span class="inline-block text-sm px-4 py-2 leading-none rounded text-gray hidden md:block lg:block">Logout</span>
+                <span class="inline-block text-sm px-4 py-2 leading-none rounded text-gray hidden md:block lg:block" @click="logout">Logout</span>
             </router-link>
         </div>
     </nav>
@@ -30,14 +30,13 @@
 import { _siteName } from "../_constants";
 import logo from '../../images/logo.svg';
 import login from '../../images/login.svg';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
-    data: function () {
-        return { logo: logo, login: login, siteName: _siteName }
-    },
+    data: function () { return { logo: logo, login: login, siteName: _siteName } },
     updated: () => { return mapGetters(['auth']) },
     computed: { ...mapGetters(['auth']) },
+    methods: { ...mapActions(['logout']) }
 }
 </script>
 

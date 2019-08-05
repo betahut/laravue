@@ -168,7 +168,7 @@ return [
     */
 
     'auth' => [
-        
+        'custom' => \App\Providers\PassportDingoProvider::class
     ],
 
     /*

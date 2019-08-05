@@ -18,6 +18,11 @@ const login = async ({ commit, state }, _auth) => {
     }
 }
 
+const logout = async ({ commit, state }) => {
+    localStorage.removeItem("auth");
+    commit('logout');
+}
+
 export default {
-    login
+    login, logout
 }

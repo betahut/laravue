@@ -12,4 +12,5 @@
 */
 
 // Route::get('/hash', 'Api\AuthController@login');
+Route::options('/{any}', function(){ return true; })->where('any', '.*');
 Route::get('/{any}', 'AppController@index')->where('any', '^(?!api).*$');
