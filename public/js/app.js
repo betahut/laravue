@@ -3340,7 +3340,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "w-4/6 flex items-center flex-shrink-0" }, [
-        _vm.auth.isLoggedIn === true
+        _vm.auth && _vm.auth.isLoggedIn === true
           ? _c("div", { staticClass: " text-sm flex-grow" }, [_vm._m(0)])
           : _vm._e()
       ]),
@@ -3349,7 +3349,7 @@ var render = function() {
         "div",
         { staticClass: "w-1/6 flex justify-end flex-shrink-0" },
         [
-          _vm.auth.isLoggedIn !== true
+          _vm.auth && _vm.auth.isLoggedIn !== true
             ? _c(
                 "router-link",
                 { staticClass: "flex", attrs: { to: "/auth/signin" } },
@@ -3371,7 +3371,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.auth.isLoggedIn === true
+          _vm.auth && _vm.auth.isLoggedIn === true
             ? _c(
                 "router-link",
                 { staticClass: "flex", attrs: { to: "/auth/signin" } },
@@ -19734,7 +19734,7 @@ function () {
 
           case 7:
             _context.next = 9;
-            return _api__WEBPACK_IMPORTED_MODULE_1__["_api"].post('oauth/token', {
+            return _api__WEBPACK_IMPORTED_MODULE_1__["default"].post('oauth/token', {
               client_id: _constants__WEBPACK_IMPORTED_MODULE_2__["_clientId"],
               client_secret: _constants__WEBPACK_IMPORTED_MODULE_2__["_clientSecret"],
               scope: '*',
@@ -19890,7 +19890,7 @@ function () {
               isLoggedIn: false
             });
             _context.next = 4;
-            return _api__WEBPACK_IMPORTED_MODULE_1__["_api"].get('/ftp/list').then(function (res) {
+            return _api__WEBPACK_IMPORTED_MODULE_1__["default"].get('/ftp/list').then(function (res) {
               console.log(res);
             })["catch"](function (err) {
               console.log(err && err.response); // err && err.response && commit('login', { isLoading: false, isLoggedIn: false, staus: err.response.status, error: err.response.data, data: '' });
@@ -20192,18 +20192,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************!*\
   !*** ./resources/js/api.js ***!
   \*****************************/
-/*! exports provided: _api */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_api", function() { return _api; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_constants */ "./resources/js/_constants/index.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
-
 
 
 
@@ -20219,16 +20215,18 @@ var _api = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
 _api.interceptors.request.use(function (config) {
   var url = config.url;
 
-  if (url.indexOf('/api/') !== -1 && url.indexOf('/oauth/') === -1) {
-    console.log(Object(vue__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['auth']), "__ATUT");
-    var token = '';
-    if (token != null) config.headers.Authorization = "Bearer ".concat(token);
+  if (url.indexOf('oauth/') === -1) {
+    var auth = JSON.parse(localStorage.auth);
+    var data = auth.data;
+    var access_token = data.access_token,
+        token_type = data.token_type;
+    if (access_token != null) config.headers.Authorization = "".concat(token_type, " ").concat(access_token);
   }
 
   return config;
 });
 
-
+/* harmony default export */ __webpack_exports__["default"] = (_api);
 
 /***/ }),
 

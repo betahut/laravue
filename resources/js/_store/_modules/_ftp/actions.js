@@ -1,4 +1,4 @@
-import { _api } from "../../../api";
+import _api from "../../../api";
 import { _clientSecret, _clientId } from "../../../_constants";
 
 const ftpList = async ({ commit, state }, _auth) => {
