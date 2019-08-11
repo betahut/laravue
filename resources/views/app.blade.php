@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
         <title>Laravel</title>
     </head>
-    <body class="bg-white-200 container mx-auto">
+    <body class="bg-gray-200 sans text-smooth">
         <div id="app">
             <app></app>
         </div>

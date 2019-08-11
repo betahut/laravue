@@ -1,8 +1,11 @@
 <template>
     <div class="w-full max-w-xs mx-auto mt-32">
-        <div class="w-full">
-            <span class="text-md text-gray-800 block text-center">Login into {{ siteName }}</span>
-            <form class="px-8 pt-4 mb-2" @submit="formSubmit">
+        <span class="text-md text-gray-800 block mb-2 flex items-center justify-center">
+            <img :src="logo" alt="login-logo" class="w-8">
+            <span class="ml-1 font-semibold text-3xl">{{ siteName }}</span>
+        </span>
+        <div class="w-full py-6 px-6 bg-white rounded shadow">
+            <form @submit="formSubmit">
                 <div class="bg-white text-center mb-4" v-if="error || (auth && auth.error)">
                     <div class="p-2 bg-red-800 items-center text-red-100 leading-none rounded-full flex inline-flex w-full" role="alert">
                         <span class="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">Error</span>
@@ -18,13 +21,13 @@
                     <p class="text-red-500 text-xs italic hidden">Please choose a password.</p>
                 </div>
                 <div class="flex items-center justify-between">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded w-full" type="submit"> Sign In </button>
+                    <button :class="'bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded w-full'+ ((auth && auth.isLoading) ? ' is-loading' : '')" type="submit"> Sign In </button>
                 </div>
             </form>
-            <p class="text-center text-gray-500 text-xs">
-                &copy;2019 {{ siteName }}. All rights reserved.
-            </p>
         </div>
+        <p class="text-center text-gray-500 text-xs mt-2">
+            &copy;2019 {{ siteName }}. All rights reserved.
+        </p>
     </div>
 </template>
 
@@ -32,16 +35,17 @@
 import { mapGetters, mapActions, mapMutations } from 'vuex';
 import { _siteName, _emailRegex } from "../../_constants";
 import { regexCheck } from "../../_functions";
-import close from "../../../images/close.svg";
+import close from "../../../images/close.png";
+import logo from "../../../images/logo.png";
 
 export default {
-    data: () => { return { siteName: _siteName, email: null, password: null, error: null, close: close } },
+    data: () => { return { siteName: _siteName, email: null, password: null, error: null, close: close, logo: logo } },
     updated: () => { return mapGetters(['auth']) },
     computed: { ...mapGetters(['auth']) },
     methods: {
         ...mapMutations({ loginMutation: 'login' }),
         ...mapActions(['login']),
-        clearError: function (e) { this.loginMutation({ isLoading: true, isLoggedIn: false }); this.error = null; },
+        clearError: function (e) { this.loginMutation({ isLoading: false, isLoggedIn: false }); this.error = null; },
         formSubmit: function(e) {
             e.preventDefault();
             this.error = "";
