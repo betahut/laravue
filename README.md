@@ -30,7 +30,9 @@
     ```user: admin@explorer.dev, password: secret```
 
 ### Screenshots
+- Login
 ![Login](https://raw.githubusercontent.com/moaj257/Laravel-Vue-Starter/master/snap1.png)
+- Dashboard
 ![Dashboard](https://raw.githubusercontent.com/moaj257/Laravel-Vue-Starter/master/snap2.png)
 
 ### To Dos
