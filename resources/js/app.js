@@ -1,31 +1,23 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-Vue.use(VueRouter);
+require("./bootstrap");
 
-import { routes } from './router';
-import { loggy } from './_functions';
-import store from './store';
-const router = new VueRouter({ routes });
+import { createApp } from "vue";
 
-router.beforeEach((to, from, next) => {
-    let _authLocal = JSON.parse(localStorage.getItem("auth"));
-    _authLocal && store.dispatch('login', _authLocal);
-    let _auth = _authLocal || store.getters.auth;
-    let isLoggedIn = _auth && _auth.isLoggedIn;
-    if(to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn)
-        next({ name: 'signin' });
-    else if(to.matched.some(record => record.meta.isAuthPage) && isLoggedIn)
-        next({ name: 'home' });
-    else
-        next();
-});
+// Root App
+import App from "./components/App.vue";
+import init from "./helpers/init";
 
-Vue.config.productionTip = false;
+// Vue Router
+import router from "./router";
 
-import App from './_views/App';
-const app = new Vue({
-    el: '#app',
-    components: { App },
-    router,
-    store
-});
+// Vuex Store
+import store from "./store";
+
+// Initial Setup -> You can emit an actions from store to load the data
+
+init();
+
+// root app instance
+const app = createApp(App);
+
+// Mountin an app
+app.use(store).use(router).mount("#app");
